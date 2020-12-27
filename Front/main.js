@@ -3,7 +3,7 @@ import App from './App'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$serverUrl = 'https://unidemo.dcloud.net.cn';
+Vue.prototype.$serverUrl = 'http://localhost:9164/api/';
 
 App.mpType = 'app'
 

@@ -20,13 +20,45 @@
 </template>
 
 <script>
+	import util from '../../utils/util.js'
+
 	export default {
 		data() {
 			return {};
 		},
 		methods: {
 			login(e) {
-				console.log("得到账号:"+ e.detail.value.nameValue + ';得到密码:' + e.detail.value.passwordValue)
+				console.log("得到账号:" + e.detail.value.nameValue + ';得到密码:' + e.detail.value.passwordValue)
+
+				if (e.detail.value.nameValue == '' || e.detail.value.passwordValue == '') {
+					util.toastError('账号和密码均不能为空')
+					return;
+				}
+
+				util.request(this.$serverUrl + '_Account/Login', {
+					userid: e.detail.value.nameValue,
+					password: e.detail.value.passwordValue,
+					cookie: false
+				}, 'POST').then((user) => {
+					console.log(user);				
+					if (user == undefined || user.access_token == '') {
+						util.toastError('登录失败：未知错误')
+						//that.loading = false
+						return
+					}
+					util.setUser(user)
+					util.toastSuccess('登录成功')
+					setTimeout(function() {
+						uni.redirectTo({
+							url: '/pages/center/center'
+						})
+					}, 1500)
+				}).catch((e) => {
+				 console.log(e);
+					//that.loading = false
+					util.toastError(e.message)
+				})
+
 			},
 			register() {
 				console.log("前往注册页面")
@@ -36,5 +68,5 @@
 </script>
 
 <style>
-	
+
 </style>

@@ -23,7 +23,9 @@
    <ProjectReference Include="..\UniAppStudy.Model\UniAppStudy.Model.csproj" />
     <ProjectReference Include="..\UniAppStudy.DataAccess\UniAppStudy.DataAccess.csproj" />
     <ProjectReference Include="..\UniAppStudy.ViewModel\UniAppStudy.ViewModel.csproj" />
- </ItemGroup >
+ </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>
 
 
